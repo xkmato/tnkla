@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>UG Timeline</title>
+  <!-- Ensures proper rendering on mobile devices -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Twitter Timeline Mockup</title>
   <style>
     body {
       margin: 0;
@@ -21,22 +23,19 @@
 
     /* Timeline Container */
     .timeline {
-      max-width: 600px;
-      margin: 20px auto;
-      background-color: #fff;
-      border: 1px solid #ccd6dd;
-      border-radius: 4px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      width: 100%;
+      padding: 10px 0; /* Adds a bit of spacing at top and bottom */
+      background-color: #e6ecf0; /* Matches the overall background color */
     }
 
     .tweet {
       display: flex;
-      border-bottom: 1px solid #e1e8ed;
+      margin: 10px; /* Space around each tweet */
+      background-color: #fff;
+      border: 1px solid #ccd6dd;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
       padding: 10px;
-    }
-
-    .tweet:last-child {
-      border-bottom: none;
     }
 
     /* Avatar */
@@ -46,6 +45,8 @@
       border-radius: 50%;
       margin-right: 10px;
       flex-shrink: 0;
+      background: #eee url("data:image/svg+xml;charset=UTF-8,%3Csvg width='64' height='64' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23ccc' width='64' height='64'/%3E%3Ctext fill='%23888' x='32' y='38' font-size='14' text-anchor='middle' font-family='Arial'%3EUser%3C/text%3E%3C/svg%3E") no-repeat center center;
+      background-size: cover;
     }
 
     /* Tweet content */
@@ -75,18 +76,30 @@
       line-height: 1.4;
     }
 
-    /* For demonstration, we’re using a data URI for an avatar image placeholder */
-    .avatar {
-      background: #eee url("data:image/svg+xml;charset=UTF-8,%3Csvg width='64' height='64' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23ccc' width='64' height='64'/%3E%3Ctext fill='%23888' x='32' y='38' font-size='14' text-anchor='middle' font-family='Arial'%3EUser%3C/text%3E%3C/svg%3E") no-repeat center center;
-      background-size: cover;
+    /* Media query for mobile */
+    @media (max-width: 600px) {
+      .tweet {
+        flex-direction: column;
+        align-items: flex-start;
+        margin: 10px;
+      }
+      .avatar {
+        margin-right: 0;
+        margin-bottom: 10px;
+      }
+      .user-info {
+        font-size: 1em;
+      }
+      .tweet-text {
+        font-size: 1em;
+      }
     }
-
   </style>
 </head>
 <body>
 
   <div class="top-bar">
-    UG Timeline
+    Twitter Timeline Mockup
   </div>
 
   <div class="timeline">
