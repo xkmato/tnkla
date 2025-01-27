@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>UG Timeline</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      background-color: #e6ecf0;
+    }
+
+    /* Top Bar */
+    .top-bar {
+      background-color: #1DA1F2;
+      color: #fff;
+      padding: 10px 20px;
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+
+    /* Timeline Container */
+    .timeline {
+      max-width: 600px;
+      margin: 20px auto;
+      background-color: #fff;
+      border: 1px solid #ccd6dd;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .tweet {
+      display: flex;
+      border-bottom: 1px solid #e1e8ed;
+      padding: 10px;
+    }
+
+    .tweet:last-child {
+      border-bottom: none;
+    }
+
+    /* Avatar */
+    .avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      margin-right: 10px;
+      flex-shrink: 0;
+    }
+
+    /* Tweet content */
+    .tweet-content {
+      flex: 1;
+    }
+
+    .user-info {
+      font-size: 0.9em;
+      color: #555;
+      margin-bottom: 5px;
+    }
+
+    .display-name {
+      font-weight: bold;
+      color: #14171a;
+      margin-right: 5px;
+    }
+
+    .timestamp {
+      color: #657786;
+    }
+
+    .tweet-text {
+      font-size: 1em;
+      color: #14171a;
+      line-height: 1.4;
+    }
+
+    /* For demonstration, we’re using a data URI for an avatar image placeholder */
+    .avatar {
+      background: #eee url("data:image/svg+xml;charset=UTF-8,%3Csvg width='64' height='64' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23ccc' width='64' height='64'/%3E%3Ctext fill='%23888' x='32' y='38' font-size='14' text-anchor='middle' font-family='Arial'%3EUser%3C/text%3E%3C/svg%3E") no-repeat center center;
+      background-size: cover;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="top-bar">
+    UG Timeline
+  </div>
+
+  <div class="timeline">
+    <!-- Tweet 1 -->
+    <div class="tweet">
+      <img class="avatar" alt="Avatar"/>
+      <div class="tweet-content">
+        <div class="user-info">
+          <span class="display-name">@CityInsider</span>
+          <span class="timestamp">• 1m</span>
+        </div>
+        <div class="tweet-text">
+          Did you hear? Allegations of bribes and kickbacks swirl around <strong>#MayorMulindwa</strong>. <strong>#PresidentLukwago</strong> reportedly favors Deputy Mayor <strong>#Mugoya</strong>. <strong>#Scandal</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tweet 2 -->
+    <div class="tweet">
+      <img class="avatar" alt="Avatar"/>
+      <div class="tweet-content">
+        <div class="user-info">
+          <span class="display-name">@UrbanVoice256</span>
+          <span class="timestamp">• 2m</span>
+        </div>
+        <div class="tweet-text">
+          Is this the end for <strong>#Mulindwa</strong>? Sources say <strong>#Lukwago</strong> is already eyeing <strong>#Mugoya</strong> as a replacement. <strong>#CorruptionGate</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tweet 3 -->
+    <div class="tweet">
+      <img class="avatar" alt="Avatar"/>
+      <div class="tweet-content">
+        <div class="user-info">
+          <span class="display-name">@MugishaReports</span>
+          <span class="timestamp">• 3m</span>
+        </div>
+        <div class="tweet-text">
+          BREAKING: Anonymous leak suggests <strong>#MayorMulindwa</strong> siphoned funds from city projects. <strong>#MugoyaNextInLine</strong> <strong>#Lukwago</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tweet 4 -->
+    <div class="tweet">
+      <img class="avatar" alt="Avatar"/>
+      <div class="tweet-content">
+        <div class="user-info">
+          <span class="display-name">@LocalCitizen</span>
+          <span class="timestamp">• 4m</span>
+        </div>
+        <div class="tweet-text">
+          So <strong>#Mulindwa</strong> might be out? And <strong>#Mugoya</strong> in? This corruption scandal is rocking the entire city! <strong>#Turbulence</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tweet 5 -->
+    <div class="tweet">
+      <img class="avatar" alt="Avatar"/>
+      <div class="tweet-content">
+        <div class="user-info">
+          <span class="display-name">@PoliticoBuzz</span>
+          <span class="timestamp">• 5m</span>
+        </div>
+        <div class="tweet-text">
+          A top aide claims <strong>#MayorMulindwa</strong> accepted illegal campaign contributions. <strong>#PresidentLukwago</strong> wants <strong>#Mugoya</strong> to step up ASAP.
+        </div>
+      </div>
+    </div>
+
+    <!-- Tweet 6 -->
+    <div class="tweet">
+      <img class="avatar" alt="Avatar"/>
+      <div class="tweet-content">
+        <div class="user-info">
+          <span class="display-name">@CityObserver</span>
+          <span class="timestamp">• 7m</span>
+        </div>
+        <div class="tweet-text">
+          Just heard <strong>#DeputyMayorMugoya</strong> is meeting with <strong>#Lukwago</strong> behind closed doors. Is <strong>#Mulindwa</strong> being pushed out?
+        </div>
+      </div>
+    </div>
+
+    <!-- Tweet 7 -->
+    <div class="tweet">
+      <img class="avatar" alt="Avatar"/>
+      <div class="tweet-content">
+        <div class="user-info">
+          <span class="display-name">@SpeakUpNow</span>
+          <span class="timestamp">• 8m</span>
+        </div>
+        <div class="tweet-text">
+          If <strong>#Mulindwa</strong> is guilty, should he resign? Twitter is on fire with the <strong>#MugoyaTakeOver</strong> rumors. <strong>#CityPolitics</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tweet 8 -->
+    <div class="tweet">
+      <img class="avatar" alt="Avatar"/>
+      <div class="tweet-content">
+        <div class="user-info">
+          <span class="display-name">@TruthSeeker256</span>
+          <span class="timestamp">• 9m</span>
+        </div>
+        <div class="tweet-text">
+          People claim <strong>#Mugoya</strong> has “clean hands,” but who knows in this city? <strong>#Mulindwa</strong> <strong>#Lukwago</strong> <strong>#CorruptionTalk</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tweet 9 -->
+    <div class="tweet">
+      <img class="avatar" alt="Avatar"/>
+      <div class="tweet-content">
+        <div class="user-info">
+          <span class="display-name">@NewsMonger64</span>
+          <span class="timestamp">• 10m</span>
+        </div>
+        <div class="tweet-text">
+          <strong>#MayorMulindwa</strong> denies any wrongdoing, calling it a political smear by <strong>#PresidentLukwago</strong> &amp; <strong>#Mugoya</strong>. <strong>#Drama</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tweet 10 -->
+    <div class="tweet">
+      <img class="avatar" alt="Avatar"/>
+      <div class="tweet-content">
+        <div class="user-info">
+          <span class="display-name">@CivicWatch256</span>
+          <span class="timestamp">• 11m</span>
+        </div>
+        <div class="tweet-text">
+          Protesters outside City Hall demand full disclosure of <strong>#Mulindwa</strong>’s finances. Meanwhile, <strong>#Mugoya</strong> keeps silent.
+        </div>
+      </div>
+    </div>
+
+    <!-- Tweet 11 -->
+    <div class="tweet">
+      <img class="avatar" alt="Avatar"/>
+      <div class="tweet-content">
+        <div class="user-info">
+          <span class="display-name">@StreetTalk</span>
+          <span class="timestamp">• 13m</span>
+        </div>
+        <div class="tweet-text">
+          The tension is unreal—<strong>#Mulindwa</strong> is holed up in his office, while <strong>#Mugoya</strong> was seen smiling at a press briefing. <strong>#Lukwago</strong> <strong>#Scandal</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tweet 12 -->
+    <div class="tweet">
+      <img class="avatar" alt="Avatar"/>
+      <div class="tweet-content">
+        <div class="user-info">
+          <span class="display-name">@UrbanScoop</span>
+          <span class="timestamp">• 14m</span>
+        </div>
+        <div class="tweet-text">
+          Say what you will about <strong>#MayorMulindwa</strong>, but the city has thrived economically. Are the allegations legit or a power grab by <strong>#Lukwago</strong> &amp; <strong>#Mugoya</strong>?
+        </div>
+      </div>
+    </div>
+
+    <!-- Tweet 13 -->
+    <div class="tweet">
+      <img class="avatar" alt="Avatar"/>
+      <div class="tweet-content">
+        <div class="user-info">
+          <span class="display-name">@Changemaker88</span>
+          <span class="timestamp">• 15m</span>
+        </div>
+        <div class="tweet-text">
+          A city official told me <strong>#Mulindwa</strong>’s scandal has been an open secret for months. <strong>#Mugoya</strong> <strong>#Lukwago</strong> <strong>#Corruption</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tweet 14 -->
+    <div class="tweet">
+      <img class="avatar" alt="Avatar"/>
+      <div class="tweet-content">
+        <div class="user-info">
+          <span class="display-name">@DialedIn256</span>
+          <span class="timestamp">• 16m</span>
+        </div>
+        <div class="tweet-text">
+          <strong>#PresidentLukwago</strong> is “deeply concerned,” sources say. Meanwhile, <strong>#Mugoya</strong>’s team already talking “transition.” <strong>#MulindwaOut?</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tweet 15 -->
+    <div class="tweet">
+      <img class="avatar" alt="Avatar"/>
+      <div class="tweet-content">
+        <div class="user-info">
+          <span class="display-name">@CitizenRant</span>
+          <span class="timestamp">• 17m</span>
+        </div>
+        <div class="tweet-text">
+          Whether <strong>#Mulindwa</strong> is guilty or not, the real losers are everyday citizens. <strong>#Mugoya</strong> <strong>#Lukwago</strong> <strong>#CityFirst</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tweet 16 -->
+    <div class="tweet">
+      <img class="avatar" alt="Avatar"/>
+      <div class="tweet-content">
+        <div class="user-info">
+          <span class="display-name">@PoliticsUncensored</span>
+          <span class="timestamp">• 18m</span>
+        </div>
+        <div class="tweet-text">
+          Rumor: <strong>#Mulindwa</strong> will face a council vote tomorrow. <strong>#Mugoya</strong> might get the job by the end of the week! <strong>#Lukwago</strong> <strong>#ShakeUp</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tweet 17 -->
+    <div class="tweet">
+      <img class="avatar" alt="Avatar"/>
+      <div class="tweet-content">
+        <div class="user-info">
+          <span class="display-name">@MukasaSpeaks</span>
+          <span class="timestamp">• 19m</span>
+        </div>
+        <div class="tweet-text">
+          My cousin at City Hall says <strong>#Mugoya</strong>’s team is drafting proposals already. Could <strong>#Mulindwa</strong>’s exit be imminent?
+        </div>
+      </div>
+    </div>
+
+    <!-- Tweet 18 -->
+    <div class="tweet">
+      <img class="avatar" alt="Avatar"/>
+      <div class="tweet-content">
+        <div class="user-info">
+          <span class="display-name">@JustInTimeNews</span>
+          <span class="timestamp">• 20m</span>
+        </div>
+        <div class="tweet-text">
+          <strong>#MayorMulindwa</strong>’s attorney calls the corruption claims a “witch hunt.” <strong>#Mugoya</strong> denies involvement. <strong>#Lukwago</strong> <strong>#PoliticalTheater</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tweet 19 -->
+    <div class="tweet">
+      <img class="avatar" alt="Avatar"/>
+      <div class="tweet-content">
+        <div class="user-info">
+          <span class="display-name">@UrbanObserver</span>
+          <span class="timestamp">• 22m</span>
+        </div>
+        <div class="tweet-text">
+          Seeing so many <strong>#WeStandWithMulindwa</strong> vs. <strong>#Mugoya4Mayor</strong> hashtags. This city is completely divided. <strong>#Lukwago</strong> <strong>#Scandal</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tweet 20 -->
+    <div class="tweet">
+      <img class="avatar" alt="Avatar"/>
+      <div class="tweet-content">
+        <div class="user-info">
+          <span class="display-name">@HotTopicDaily</span>
+          <span class="timestamp">• 23m</span>
+        </div>
+        <div class="tweet-text">
+          Gotta admit: <strong>#DeputyMayorMugoya</strong> looks like the clean candidate next to <strong>#Mulindwa</strong>’s alleged corruption. <strong>#Lukwago</strong> <strong>#PowerShift</strong>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
