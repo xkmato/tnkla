@@ -1,808 +1,925 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <!-- Ensures proper rendering on mobile devices -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>UG Timeline</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-      background-color: #e6ecf0;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Ensures proper rendering on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UG Timeline</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        background-color: #e6ecf0;
+      }
 
-    /* Top Bar */
-    .top-bar {
-      background-color: #1DA1F2;
-      color: #fff;
-      padding: 10px 20px;
-      font-size: 1.2em;
-      font-weight: bold;
-    }
+      /* Top Bar */
+      .top-bar {
+        background-color: #1da1f2;
+        color: #fff;
+        padding: 10px 20px;
+        font-size: 1.2em;
+        font-weight: bold;
+      }
 
-    /* Timeline Container */
-    .timeline {
-      width: 100%;
-      padding: 10px 0; /* Adds a bit of spacing at top and bottom */
-      background-color: #e6ecf0; /* Matches the overall background color */
-    }
+      /* Timeline Container */
+      .timeline {
+        width: 100%;
+        padding: 10px 0; /* Adds a bit of spacing at top and bottom */
+        background-color: #e6ecf0; /* Matches the overall background color */
+      }
 
-    .tweet {
-      display: flex;
-      margin: 10px; /* Space around each tweet */
-      background-color: #fff;
-      border: 1px solid #ccd6dd;
-      border-radius: 4px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      padding: 10px;
-    }
-
-    /* Avatar */
-    .avatar {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      margin-right: 10px;
-      flex-shrink: 0;
-      background: #eee url("data:image/svg+xml;charset=UTF-8,%3Csvg width='64' height='64' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23ccc' width='64' height='64'/%3E%3Ctext fill='%23888' x='32' y='38' font-size='14' text-anchor='middle' font-family='Arial'%3EUser%3C/text%3E%3C/svg%3E") no-repeat center center;
-      background-size: cover;
-    }
-
-    /* Tweet content */
-    .tweet-content {
-      flex: 1;
-    }
-
-    .user-info {
-      font-size: 0.9em;
-      color: #555;
-      margin-bottom: 5px;
-    }
-
-    .display-name {
-      font-weight: bold;
-      color: #14171a;
-      margin-right: 5px;
-    }
-
-    .timestamp {
-      color: #657786;
-    }
-
-    .tweet-text {
-      font-size: 1em;
-      color: #14171a;
-      line-height: 1.4;
-    }
-
-    /* Media query for mobile */
-    @media (max-width: 600px) {
       .tweet {
-        flex-direction: column;
-        align-items: flex-start;
-        margin: 10px;
+        display: flex;
+        margin: 10px; /* Space around each tweet */
+        background-color: #fff;
+        border: 1px solid #ccd6dd;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 10px;
       }
+
+      /* Avatar */
       .avatar {
-        margin-right: 0;
-        margin-bottom: 10px;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        margin-right: 10px;
+        flex-shrink: 0;
+        background: #eee
+          url("data:image/svg+xml;charset=UTF-8,%3Csvg width='64' height='64' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23ccc' width='64' height='64'/%3E%3Ctext fill='%23888' x='32' y='38' font-size='14' text-anchor='middle' font-family='Arial'%3EUser%3C/text%3E%3C/svg%3E")
+          no-repeat center center;
+        background-size: cover;
       }
+
+      /* Tweet content */
+      .tweet-content {
+        flex: 1;
+      }
+
       .user-info {
-        font-size: 1em;
+        font-size: 0.9em;
+        color: #555;
+        margin-bottom: 5px;
       }
+
+      .display-name {
+        font-weight: bold;
+        color: #14171a;
+        margin-right: 5px;
+      }
+
+      .timestamp {
+        color: #657786;
+      }
+
       .tweet-text {
         font-size: 1em;
+        color: #14171a;
+        line-height: 1.4;
       }
-    }
-  </style>
-</head>
-<body>
 
-  <div class="top-bar">
-    UG Timeline
-  </div>
+      /* Media query for mobile */
+      @media (max-width: 600px) {
+        .tweet {
+          flex-direction: column;
+          align-items: flex-start;
+          margin: 10px;
+        }
+        .avatar {
+          margin-right: 0;
+          margin-bottom: 10px;
+        }
+        .user-info {
+          font-size: 1em;
+        }
+        .tweet-text {
+          font-size: 1em;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top-bar">UG Timeline</div>
 
-  <div class="timeline">
-    <!-- Tweet 1 -->
-    <div class="tweet">
-      <img class="avatar" alt="Avatar" src="logo.png"/>
-      <div class="tweet-content">
-        <div class="user-info">
-          <span class="display-name">@CityInsider</span>
-          <span class="timestamp">• 1m</span>
-        </div>
-        <div class="tweet-text">
-          Did you hear? Allegations of bribes and kickbacks swirl around <strong>#MayorMulindwa</strong>. <strong>#PresidentLukwago</strong> reportedly favors Deputy Mayor <strong>#Mugoya</strong>. <strong>#Scandal</strong>
+    <div class="timeline">
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@KampalaUpdates</span>
+            <span class="timestamp">• 2m</span>
+          </div>
+          <div class="tweet-text">
+            Just breaking: <strong>Avenger, the president's son</strong>, has
+            gone missing in Kampala. Rumors swirl between
+            <strong>Mayor Mulindwa</strong> being involved and
+            <strong>terrorists</strong> taking him. #KampalaCrisis
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Tweet 2 -->
-    <div class="tweet">
-      <img class="avatar" alt="Avatar" src="logo.png"/>
-      <div class="tweet-content">
-        <div class="user-info">
-          <span class="display-name">@UrbanVoice256</span>
-          <span class="timestamp">• 2m</span>
-        </div>
-        <div class="tweet-text">
-          Is this the end for <strong>#Mulindwa</strong>? Sources say <strong>#Lukwago</strong> is already eyeing <strong>#Mugoya</strong> as a replacement. <strong>#CorruptionGate</strong>
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@CityInsider</span>
+            <span class="timestamp">• 5m</span>
+          </div>
+          <div class="tweet-text">
+            Sources close to the president say <strong>Avenger</strong> owed a
+            massive gambling debt, but opponents accuse the mayor of
+            orchestrating his disappearance. #DebtOrPlot
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Tweet 3 -->
-    <div class="tweet">
-      <img class="avatar" alt="Avatar" src="logo.png"/>
-      <div class="tweet-content">
-        <div class="user-info">
-          <span class="display-name">@MugishaReports</span>
-          <span class="timestamp">• 3m</span>
-        </div>
-        <div class="tweet-text">
-          BREAKING: Anonymous leak suggests <strong>#MayorMulindwa</strong> siphoned funds from city projects. <strong>#MugoyaNextInLine</strong> <strong>#Lukwago</strong>
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@KampalaGossips</span>
+            <span class="timestamp">• 8m</span>
+          </div>
+          <div class="tweet-text">
+            A neighbor reported seeing <strong>Avenger</strong> being forced
+            into a black van near the old market. The driver looked suspicious,
+            but no one intervened. #KampalaSecrets
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Tweet 4 -->
-    <div class="tweet">
-      <img class="avatar" alt="Avatar" src="logo.png"/>
-      <div class="tweet-content">
-        <div class="user-info">
-          <span class="display-name">@LocalCitizen</span>
-          <span class="timestamp">• 4m</span>
-        </div>
-        <div class="tweet-text">
-          So <strong>#Mulindwa</strong> might be out? And <strong>#Mugoya</strong> in? This corruption scandal is rocking the entire city! <strong>#Turbulence</strong>
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@TerrorAlerts</span>
+            <span class="timestamp">• 11m</span>
+          </div>
+          <div class="tweet-text">
+            Unverified reports: A terrorist group has claimed responsibility for
+            <strong>Avenger's abduction</strong>. Security forces are on high
+            alert. #SecurityAlert
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Tweet 5 -->
-    <div class="tweet">
-      <img class="avatar" alt="Avatar" src="logo.png"/>
-      <div class="tweet-content">
-        <div class="user-info">
-          <span class="display-name">@PoliticoBuzz</span>
-          <span class="timestamp">• 5m</span>
-        </div>
-        <div class="tweet-text">
-          A top aide claims <strong>#MayorMulindwa</strong> accepted illegal campaign contributions. <strong>#PresidentLukwago</strong> wants <strong>#Mugoya</strong> to step up ASAP.
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@KampalaTruth</span>
+            <span class="timestamp">• 14m</span>
+          </div>
+          <div class="tweet-text">
+            The mayor's office denies any involvement, calling it "baseless
+            rumors," while political opponents accuse them of covering up a
+            crime. #PowerStruggle
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Tweet 6 -->
-    <div class="tweet">
-      <img class="avatar" alt="Avatar" src="logo.png"/>
-      <div class="tweet-content">
-        <div class="user-info">
-          <span class="display-name">@CityObserver</span>
-          <span class="timestamp">• 7m</span>
-        </div>
-        <div class="tweet-text">
-          Just heard <strong>#DeputyMayorMugoya</strong> is meeting with <strong>#Lukwago</strong> behind closed doors. Is <strong>#Mulindwa</strong> being pushed out?
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@Premonition</span>
+            <span class="timestamp">• 17m</span>
+          </div>
+          <div class="tweet-text">
+            A friend of <strong>Avenger</strong> claims he predicted his
+            disappearance with a cryptic message: "I feel like my life is in
+            danger." #Premonition
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Tweet 7 -->
-    <div class="tweet">
-      <img class="avatar" alt="Avatar" src="logo.png"/>
-      <div class="tweet-content">
-        <div class="user-info">
-          <span class="display-name">@SpeakUpNow</span>
-          <span class="timestamp">• 8m</span>
-        </div>
-        <div class="tweet-text">
-          If <strong>#Mulindwa</strong> is guilty, should he resign? Twitter is on fire with the <strong>#MugoyaTakeOver</strong> rumors. <strong>#CityPolitics</strong>
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@KampalaBuzz</span>
+            <span class="timestamp">• 20m</span>
+          </div>
+          <div class="tweet-text">
+            Fans are creating wild theories about the kidnapping, from the mayor
+            being a secret antagonist to <strong>Avenger's</strong> gambling
+            habits leading to his demise. #FanTheories
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Tweet 8 -->
-    <div class="tweet">
-      <img class="avatar" alt="Avatar" src="logo.png"/>
-      <div class="tweet-content">
-        <div class="user-info">
-          <span class="display-name">@TruthSeeker256</span>
-          <span class="timestamp">• 9m</span>
-        </div>
-        <div class="tweet-text">
-          People claim <strong>#Mugoya</strong> has “clean hands,” but who knows in this city? <strong>#Mulindwa</strong> <strong>#Lukwago</strong> <strong>#CorruptionTalk</strong>
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@InvestigateNow</span>
+            <span class="timestamp">• 23m</span>
+          </div>
+          <div class="tweet-text">
+            A leaked financial report shows the mayor made unusual transactions
+            around the time of <strong>Avenger's</strong> disappearance.
+            #Scandal
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Tweet 9 -->
-    <div class="tweet">
-      <img class="avatar" alt="Avatar" src="logo.png"/>
-      <div class="tweet-content">
-        <div class="user-info">
-          <span class="display-name">@NewsMonger64</span>
-          <span class="timestamp">• 10m</span>
-        </div>
-        <div class="tweet-text">
-          <strong>#MayorMulindwa</strong> denies any wrongdoing, calling it a political smear by <strong>#PresidentLukwago</strong> &amp; <strong>#Mugoya</strong>. <strong>#Drama</strong>
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@KampalaPeace</span>
+            <span class="timestamp">• 26m</span>
+          </div>
+          <div class="tweet-text">
+            The president has called for calm, urging the public to avoid
+            spreading unverified information while authorities investigate.
+            #LeadershipUnderPressure
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Tweet 10 -->
-    <div class="tweet">
-      <img class="avatar" alt="Avatar" src="logo.png"/>
-      <div class="tweet-content">
-        <div class="user-info">
-          <span class="display-name">@CivicWatch256</span>
-          <span class="timestamp">• 11m</span>
-        </div>
-        <div class="tweet-text">
-          Protesters outside City Hall demand full disclosure of <strong>#Mulindwa</strong>’s finances. Meanwhile, <strong>#Mugoya</strong> keeps silent.
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@MayorMystery</span>
+            <span class="timestamp">• 29m</span>
+          </div>
+          <div class="tweet-text">
+            New rumor: The mayor was seen arguing with
+            <strong>Avenger</strong> at a late-night meeting just hours before
+            his disappearance. No official comment yet. #KampalaGossip
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Tweet 11 -->
-    <div class="tweet">
-      <img class="avatar" alt="Avatar" src="logo.png"/>
-      <div class="tweet-content">
-        <div class="user-info">
-          <span class="display-name">@StreetTalk</span>
-          <span class="timestamp">• 13m</span>
-        </div>
-        <div class="tweet-text">
-          The tension is unreal—<strong>#Mulindwa</strong> is holed up in his office, while <strong>#Mugoya</strong> was seen smiling at a press briefing. <strong>#Lukwago</strong> <strong>#Scandal</strong>
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@TerrorInKampala</span>
+            <span class="timestamp">• 32m</span>
+          </div>
+          <div class="tweet-text">
+            A terrorist group released a video threatening to take hostages
+            unless demands are met, possibly linked to
+            <strong>Avenger's</strong> abduction. #SecurityAlert
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Tweet 12 -->
-    <div class="tweet">
-      <img class="avatar" alt="Avatar" src="logo.png"/>
-      <div class="tweet-content">
-        <div class="user-info">
-          <span class="display-name">@UrbanScoop</span>
-          <span class="timestamp">• 14m</span>
-        </div>
-        <div class="tweet-text">
-          Say what you will about <strong>#MayorMulindwa</strong>, but the city has thrived economically. Are the allegations legit or a power grab by <strong>#Lukwago</strong> &amp; <strong>#Mugoya</strong>?
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@AvengerWentMissing</span>
+            <span class="timestamp">• 35m</span>
+          </div>
+          <div class="tweet-text">
+            Experts are analyzing <strong>Avenger's</strong> recent behavior,
+            suggesting his reckless decisions may have led to his disappearance.
+            #AnalysisTime
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Tweet 13 -->
-    <div class="tweet">
-      <img class="avatar" alt="Avatar" src="logo.png"/>
-      <div class="tweet-content">
-        <div class="user-info">
-          <span class="display-name">@Changemaker88</span>
-          <span class="timestamp">• 15m</span>
-        </div>
-        <div class="tweet-text">
-          A city official told me <strong>#Mulindwa</strong>’s scandal has been an open secret for months. <strong>#Mugoya</strong> <strong>#Lukwago</strong> <strong>#Corruption</strong>
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@KampalaCall</span>
+            <span class="timestamp">• 38m</span>
+          </div>
+          <div class="tweet-text">
+            Thousands are gathering in Kampala, demanding justice for
+            <strong>Avenger</strong>. Chants of "Mayor resign!" and "Find our
+            leader's son!" echo through the streets. #KampalaRally
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Tweet 14 -->
-    <div class="tweet">
-      <img class="avatar" alt="Avatar" src="logo.png"/>
-      <div class="tweet-content">
-        <div class="user-info">
-          <span class="display-name">@DialedIn256</span>
-          <span class="timestamp">• 16m</span>
-        </div>
-        <div class="tweet-text">
-          <strong>#PresidentLukwago</strong> is “deeply concerned,” sources say. Meanwhile, <strong>#Mugoya</strong>’s team already talking “transition.” <strong>#MulindwaOut?</strong>
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@MayorsSupporters</span>
+            <span class="timestamp">• 41m</span>
+          </div>
+          <div class="tweet-text">
+            Some Kampalans are rallying behind the mayor, accusing the public of
+            focusing on the wrong suspects while ignoring genuine threats.
+            #KampalaDivide
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Tweet 15 -->
-    <div class="tweet">
-      <img class="avatar" alt="Avatar" src="logo.png"/>
-      <div class="tweet-content">
-        <div class="user-info">
-          <span class="display-name">@CitizenRant</span>
-          <span class="timestamp">• 17m</span>
-        </div>
-        <div class="tweet-text">
-          Whether <strong>#Mulindwa</strong> is guilty or not, the real losers are everyday citizens. <strong>#Mugoya</strong> <strong>#Lukwago</strong> <strong>#CityFirst</strong>
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@TerrorThreats</span>
+            <span class="timestamp">• 44m</span>
+          </div>
+          <div class="tweet-text">
+            The terrorist group demanding <strong>Avenger's</strong> release
+            also threatens to attack the city unless their demands are met.
+            #RansomDemand
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Tweet 16 -->
-    <div class="tweet">
-      <img class="avatar" alt="Avatar" src="logo.png"/>
-      <div class="tweet-content">
-        <div class="user-info">
-          <span class="display-name">@PoliticsUncensored</span>
-          <span class="timestamp">• 18m</span>
-        </div>
-        <div class="tweet-text">
-          Rumor: <strong>#Mulindwa</strong> will face a council vote tomorrow. <strong>#Mugoya</strong> might get the job by the end of the week! <strong>#Lukwago</strong> <strong>#ShakeUp</strong>
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@KampalaWise</span>
+            <span class="timestamp">• 47m</span>
+          </div>
+          <div class="tweet-text">
+            A former mayor warns that blaming the current mayor without evidence
+            could lead to chaos and distract from finding the real culprits.
+            #PeacefulCall
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Tweet 17 -->
-    <div class="tweet">
-      <img class="avatar" alt="Avatar" src="logo.png"/>
-      <div class="tweet-content">
-        <div class="user-info">
-          <span class="display-name">@MukasaSpeaks</span>
-          <span class="timestamp">• 19m</span>
-        </div>
-        <div class="tweet-text">
-          My cousin at City Hall says <strong>#Mugoya</strong>’s team is drafting proposals already. Could <strong>#Mulindwa</strong>’s exit be imminent?
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@AvengersStory</span>
+            <span class="timestamp">• 50m</span>
+          </div>
+          <div class="tweet-text">
+            The president has called for calm, asking the public to avoid
+            spreading unverified information while authorities continue their
+            investigation. #LeadershipUnderPressure
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Tweet 18 -->
-    <div class="tweet">
-      <img class="avatar" alt="Avatar" src="logo.png"/>
-      <div class="tweet-content">
-        <div class="user-info">
-          <span class="display-name">@JustInTimeNews</span>
-          <span class="timestamp">• 20m</span>
-        </div>
-        <div class="tweet-text">
-          <strong>#MayorMulindwa</strong>’s attorney calls the corruption claims a “witch hunt.” <strong>#Mugoya</strong> denies involvement. <strong>#Lukwago</strong> <strong>#PoliticalTheater</strong>
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@MayorMugoya</span>
+            <span class="timestamp">• 53m</span>
+          </div>
+          <div class="tweet-text">
+            Deputy Mayor <strong>Mugoya</strong> is under scrutiny as rumors
+            suggest he may have been involved in
+            <strong>Avenger's</strong> abduction. #DeputyMayorsTroubles
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Tweet 19 -->
-    <div class="tweet">
-      <img class="avatar" alt="Avatar" src="logo.png"/>
-      <div class="tweet-content">
-        <div class="user-info">
-          <span class="display-name">@UrbanObserver</span>
-          <span class="timestamp">• 22m</span>
-        </div>
-        <div class="tweet-text">
-          Seeing so many <strong>#WeStandWithMulindwa</strong> vs. <strong>#Mugoya4Mayor</strong> hashtags. This city is completely divided. <strong>#Lukwago</strong> <strong>#Scandal</strong>
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@KampalaJustice</span>
+            <span class="timestamp">• 56m</span>
+          </div>
+          <div class="tweet-text">
+            A petition demanding a full investigation into the mayor's actions
+            and his potential link to <strong>Avenger’s</strong> disappearance
+            has gathered thousands of signatures. #PetitionPower
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Tweet 20 -->
-    <div class="tweet">
-      <img class="avatar" alt="Avatar" src="logo.png"/>
-      <div class="tweet-content">
-        <div class="user-info">
-          <span class="display-name">@HotTopicDaily</span>
-          <span class="timestamp">• 23m</span>
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@TerrorTrackRecord</span>
+            <span class="timestamp">• 59m</span>
+          </div>
+          <div class="tweet-text">
+            The terrorist group linked to this region has a history of abducting
+            high-profile figures. Could this be their latest move? #NotAgain
+          </div>
         </div>
-        <div class="tweet-text">
-          Gotta admit: <strong>#DeputyMayorMugoya</strong> looks like the clean candidate next to <strong>#Mulindwa</strong>’s alleged corruption. <strong>#Lukwago</strong> <strong>#PowerShift</strong>
+      </div>
+
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@KampalaShocker</span>
+            <span class="timestamp">• 1h</span>
+          </div>
+          <div class="tweet-text">
+            A whistleblower claims a former bodyguard of the mayor saw
+            suspicious activity around the mayor’s team before
+            <strong>Avenger’s</strong> disappearance. #Whistleblower
+          </div>
+        </div>
+      </div>
+
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@KampalaLaughter</span>
+            <span class="timestamp">• 1h</span>
+          </div>
+          <div class="tweet-text">
+            Twitter is flooded with satirical tweets about the kidnapping,
+            turning it into a comedy of errors while raising awareness.
+            #SatireWithPurpose
+          </div>
+        </div>
+      </div>
+
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@MayorsReputations</span>
+            <span class="timestamp">• 1h</span>
+          </div>
+          <div class="tweet-text">
+            The mayor’s office has launched a defense fund to combat rumors,
+            hiring PR experts to control the narrative and protect their image.
+            #DamageControl
+          </div>
+        </div>
+      </div>
+
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@KampalaCrisis</span>
+            <span class="timestamp">• 1h</span>
+          </div>
+          <div class="tweet-text">
+            Concerns grow that the terrorist group has local sympathizers who
+            might aid in <strong>Avenger’s</strong> rescue or escalate tensions
+            further. #LocalSupport
+          </div>
+        </div>
+      </div>
+
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@FamilyDesperation</span>
+            <span class="timestamp">• 1h</span>
+          </div>
+          <div class="tweet-text">
+            <strong>Avenger’s</strong> family pleads for his safe return,
+            issuing public appeals and offering rewards for information leading
+            to his liberation. #FamilyAppeal
+          </div>
+        </div>
+      </div>
+
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@InvestigationDeep</span>
+            <span class="timestamp">• 1h</span>
+          </div>
+          <div class="tweet-text">
+            An investigative journalist dives into the mayor’s finances,
+            suspecting foul play in <strong>Avenger’s</strong> disappearance.
+            #TruthBegins
+          </div>
+        </div>
+      </div>
+
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@AvengerRescue</span>
+            <span class="timestamp">• 1h</span>
+          </div>
+          <div class="tweet-text">
+            Sources suggest negotiations are underway to meet some of the
+            terrorists’ demands, though details remain confidential.
+            #NegotiationRound
+          </div>
+        </div>
+      </div>
+
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@KampalaTruth</span>
+            <span class="timestamp">• 1h</span>
+          </div>
+          <div class="tweet-text">
+            The mayor releases a statement denying any involvement and calling
+            the rumors "baseless" while urging calm in Kampala. #MayorDenial
+          </div>
+        </div>
+      </div>
+
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@AvengersMind</span>
+            <span class="timestamp">• 1h</span>
+          </div>
+          <div class="tweet-text">
+            A psychologist analyzes <strong>Avenger’s</strong> behavior,
+            suggesting his trust issues and reckless decisions may have put him
+            in danger. #MentalHealthAngle
+          </div>
+        </div>
+      </div>
+
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@KampalaShocker</span>
+            <span class="timestamp">• 1h</span>
+          </div>
+          <div class="tweet-text">
+            A grainy video surfaces showing <strong>Avenger</strong> being taken
+            by a group of masked men—terrorism experts say it’s likely
+            authentic. #TerrorCapture
+          </div>
+        </div>
+      </div>
+
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@GlobalAwareness</span>
+            <span class="timestamp">• 1h</span>
+          </div>
+          <div class="tweet-text">
+            "#FreeAvenger" is trending globally, with users sharing theories and
+            demanding answers from local leaders. #PublicOpinion
+          </div>
+        </div>
+      </div>
+
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@UndercoverOps</span>
+            <span class="timestamp">• 1h</span>
+          </div>
+          <div class="tweet-text">
+            Sources reveal a secret operation is underway to track the mayor’s
+            associates, searching for clues in
+            <strong>Avenger’s</strong> disappearance. #KampalaSecrets
+          </div>
+        </div>
+      </div>
+
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@ChillingStatement</span>
+            <span class="timestamp">• 1h</span>
+          </div>
+          <div class="tweet-text">
+            The leader of the terrorist group issues a chilling statement: "We
+            have what we need—<strong>Avenger</strong> is our insurance policy."
+            #TerrorThreats
+          </div>
+        </div>
+      </div>
+
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@KampalaShocker</span>
+            <span class="timestamp">• 1h</span>
+          </div>
+          <div class="tweet-text">
+            Leaked financial records show unusual transactions in the mayor’s
+            bank account around the time of
+            <strong>Avenger’s</strong> kidnapping. #FinancialFraud
+          </div>
+        </div>
+      </div>
+
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@KampalaDivide</span>
+            <span class="timestamp">• 1h</span>
+          </div>
+          <div class="tweet-text">
+            Some Kampalans are rallying behind the mayor, accusing the public of
+            focusing on the wrong suspects while ignoring genuine threats.
+            #KampalaCrisis
+          </div>
+        </div>
+      </div>
+
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@TerrorThreats</span>
+            <span class="timestamp">• 1h</span>
+          </div>
+          <div class="tweet-text">
+            The terrorist group demanding <strong>Avenger's</strong> release
+            also threatens to attack the city unless their demands are met.
+            #RansomDemand
+          </div>
+        </div>
+      </div>
+
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@KampalaWise</span>
+            <span class="timestamp">• 1h</span>
+          </div>
+          <div class="tweet-text">
+            A former mayor warns that blaming the current mayor without evidence
+            could lead to chaos and distract from finding the real culprits.
+            #PeacefulCall
+          </div>
+        </div>
+      </div>
+
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@AvengersStory</span>
+            <span class="timestamp">• 1h</span>
+          </div>
+          <div class="tweet-text">
+            The president has called for calm, asking the public to avoid
+            spreading unverified information while authorities continue their
+            investigation. #LeadershipUnderPressure
+          </div>
+        </div>
+      </div>
+
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@MayorMugoya</span>
+            <span class="timestamp">• 1h</span>
+          </div>
+          <div class="tweet-text">
+            Deputy Mayor <strong>Mugoya</strong> is under scrutiny as rumors
+            suggest he may have been involved in
+            <strong>Avenger's</strong> abduction. #DeputyMayorsTroubles
+          </div>
+        </div>
+      </div>
+
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@KampalaJustice</span>
+            <span class="timestamp">• 1h</span>
+          </div>
+          <div class="tweet-text">
+            A petition demanding a full investigation into the mayor's actions
+            and his potential link to <strong>Avenger’s</strong> disappearance
+            has gathered thousands of signatures. #PetitionPower
+          </div>
+        </div>
+      </div>
+
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@TerrorTrackRecord</span>
+            <span class="timestamp">• 1h</span>
+          </div>
+          <div class="tweet-text">
+            The terrorist group linked to this region has a history of abducting
+            high-profile figures. Could this be their latest move? #NotAgain
+          </div>
+        </div>
+      </div>
+
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@KampalaShocker</span>
+            <span class="timestamp">• 1h</span>
+          </div>
+          <div class="tweet-text">
+            A grainy video surfaces showing <strong>Avenger</strong> being taken
+            by a group of masked men—terrorism experts say it’s likely
+            authentic. #TerrorCapture
+          </div>
+        </div>
+      </div>
+
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@GlobalAwareness</span>
+            <span class="timestamp">• 1h</span>
+          </div>
+          <div class="tweet-text">
+            "#FreeAvenger" is trending globally, with users sharing theories and
+            demanding answers from local leaders. #PublicOpinion
+          </div>
+        </div>
+      </div>
+
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@UndercoverOps</span>
+            <span class="timestamp">• 1h</span>
+          </div>
+          <div class="tweet-text">
+            Sources reveal a secret operation is underway to track the mayor’s
+            associates, searching for clues in
+            <strong>Avenger’s</strong> disappearance. #KampalaSecrets
+          </div>
+        </div>
+      </div>
+
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@ChillingStatement</span>
+            <span class="timestamp">• 1h</span>
+          </div>
+          <div class="tweet-text">
+            The leader of the terrorist group issues a chilling statement: "We
+            have what we need—<strong>Avenger</strong> is our insurance policy."
+            #TerrorThreats
+          </div>
+        </div>
+      </div>
+
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@KampalaShocker</span>
+            <span class="timestamp">• 1h</span>
+          </div>
+          <div class="tweet-text">
+            Leaked financial records show unusual transactions in the mayor’s
+            bank account around the time of
+            <strong>Avenger’s</strong> kidnapping. #FinancialFraud
+          </div>
+        </div>
+      </div>
+
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@KampalaDivide</span>
+            <span class="timestamp">• 1h</span>
+          </div>
+          <div class="tweet-text">
+            Some Kampalans are rallying behind the mayor, accusing the public of
+            focusing on the wrong suspects while ignoring genuine threats.
+            #KampalaCrisis
+          </div>
+        </div>
+      </div>
+
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@TerrorThreats</span>
+            <span class="timestamp">• 1h</span>
+          </div>
+          <div class="tweet-text">
+            The terrorist group demanding <strong>Avenger's</strong> release
+            also threatens to attack the city unless their demands are met.
+            #RansomDemand
+          </div>
+        </div>
+      </div>
+
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@KampalaWise</span>
+            <span class="timestamp">• 1h</span>
+          </div>
+          <div class="tweet-text">
+            A former mayor warns that blaming the current mayor without evidence
+            could lead to chaos and distract from finding the real culprits.
+            #PeacefulCall
+          </div>
+        </div>
+      </div>
+
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@AvengersStory</span>
+            <span class="timestamp">• 1h</span>
+          </div>
+          <div class="tweet-text">
+            The president has called for calm, asking the public to avoid
+            spreading unverified information while authorities continue their
+            investigation. #LeadershipUnderPressure
+          </div>
+        </div>
+      </div>
+
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@MayorMugoya</span>
+            <span class="timestamp">• 1h</span>
+          </div>
+          <div class="tweet-text">
+            Deputy Mayor <strong>Mugoya</strong> is under scrutiny as rumors
+            suggest he may have been involved in
+            <strong>Avenger's</strong> abduction. #DeputyMayorsTroubles
+          </div>
+        </div>
+      </div>
+
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@KampalaJustice</span>
+            <span class="timestamp">• 1h</span>
+          </div>
+          <div class="tweet-text">
+            A petition demanding a full investigation into the mayor's actions
+            and his potential link to <strong>Avenger’s</strong> disappearance
+            has gathered thousands of signatures. #PetitionPower
+          </div>
+        </div>
+      </div>
+
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@TerrorTrackRecord</span>
+            <span class="timestamp">• 1h</span>
+          </div>
+          <div class="tweet-text">
+            The terrorist group linked to this region has a history of abducting
+            high-profile figures. Could this be their latest move? #NotAgain
+          </div>
+        </div>
+      </div>
+
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@KampalaShocker</span>
+            <span class="timestamp">• 1h</span>
+          </div>
+          <div class="tweet-text">
+            A grainy video surfaces showing <strong>Avenger</strong> being taken
+            by a group of masked men—terrorism experts say it’s likely
+            authentic. #TerrorCapture
+          </div>
+        </div>
+      </div>
+
+      <div class="tweet">
+        <img class="avatar" alt="Logo" src="logo.png" />
+        <div class="tweet-content">
+          <div class="user-info">
+            <span class="display-name">@GlobalAwareness</span>
+            <span class="timestamp">• 1h</span>
+          </div>
+          <div class="tweet-text">
+            "#FreeAvenger" is trending globally, with users sharing theories and
+            demanding answers from local leaders. #PublicOpinion
+          </div>
         </div>
       </div>
     </div>
-
-    <!-- Tweet 21 -->
-<div class="tweet">
-    <img class="avatar" alt="Avatar" src="logo.png"/>
-    <div class="tweet-content">
-      <div class="user-info">
-        <span class="display-name">@CityInsider</span>
-        <span class="timestamp">• 24m</span>
-      </div>
-      <div class="tweet-text">
-        Rumors say <strong>#MayorMulindwa</strong> could be forced to step down by next week. <strong>#Mugoya</strong> watchers say he's prepped and ready. <strong>#Lukwago</strong>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Tweet 22 -->
-  <div class="tweet">
-    <img class="avatar" alt="Avatar" src="logo.png"/>
-    <div class="tweet-content">
-      <div class="user-info">
-        <span class="display-name">@PublicEye256</span>
-        <span class="timestamp">• 25m</span>
-      </div>
-      <div class="tweet-text">
-        Multiple sources confirm a council meeting on <strong>#Mulindwa</strong>’s fate is scheduled soon. <strong>#MugoyaTakeOver</strong> <strong>#Lukwago</strong>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Tweet 23 -->
-  <div class="tweet">
-    <img class="avatar" alt="Avatar" src="logo.png"/>
-    <div class="tweet-content">
-      <div class="user-info">
-        <span class="display-name">@PeoplePowerNow</span>
-        <span class="timestamp">• 26m</span>
-      </div>
-      <div class="tweet-text">
-        Citizens are protesting outside City Hall again. Some shout "<strong>#MulindwaResign</strong>" while others show support. Divided city! <strong>#Mugoya</strong> <strong>#Lukwago</strong>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Tweet 24 -->
-  <div class="tweet">
-    <img class="avatar" alt="Avatar" src="logo.png"/>
-    <div class="tweet-content">
-      <div class="user-info">
-        <span class="display-name">@DailyPlanet256</span>
-        <span class="timestamp">• 27m</span>
-      </div>
-      <div class="tweet-text">
-        Leaked memos suggest <strong>#MayorMulindwa</strong> misallocated funds for personal projects. <strong>#Scandal</strong> <strong>#Mugoya</strong> 
-      </div>
-    </div>
-  </div>
-  
-  <!-- Tweet 25 -->
-  <div class="tweet">
-    <img class="avatar" alt="Avatar" src="logo.png"/>
-    <div class="tweet-content">
-      <div class="user-info">
-        <span class="display-name">@CityChronicle</span>
-        <span class="timestamp">• 28m</span>
-      </div>
-      <div class="tweet-text">
-        Saw <strong>#Mugoya</strong> enter a closed-door meeting with top officials. Meanwhile, <strong>#Lukwago</strong> remains silent. <strong>#MulindwaUnderFire</strong>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Tweet 26 -->
-  <div class="tweet">
-    <img class="avatar" alt="Avatar" src="logo.png"/>
-    <div class="tweet-content">
-      <div class="user-info">
-        <span class="display-name">@InsidePolitics</span>
-        <span class="timestamp">• 29m</span>
-      </div>
-      <div class="tweet-text">
-        Will <strong>#Mulindwa</strong> face criminal charges? Some say <strong>#PresidentLukwago</strong> is pressing the Attorney General. <strong>#DramaUnfolds</strong>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Tweet 27 -->
-  <div class="tweet">
-    <img class="avatar" alt="Avatar" src="logo.png"/>
-    <div class="tweet-content">
-      <div class="user-info">
-        <span class="display-name">@CitizenJournalist</span>
-        <span class="timestamp">• 30m</span>
-      </div>
-      <div class="tweet-text">
-        <strong>#Mugoya</strong> is playing it cool, but everyone knows he's gearing up for the top seat. <strong>#Mulindwa</strong> <strong>#Lukwago</strong>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Tweet 28 -->
-  <div class="tweet">
-    <img class="avatar" alt="Avatar" src="logo.png"/>
-    <div class="tweet-content">
-      <div class="user-info">
-        <span class="display-name">@PolitixGuru</span>
-        <span class="timestamp">• 31m</span>
-      </div>
-      <div class="tweet-text">
-        Aides say <strong>#MayorMulindwa</strong> is determined to fight back. Could <strong>#Lukwago</strong> and <strong>#Mugoya</strong> be overplaying their hand?
-      </div>
-    </div>
-  </div>
-  
-  <!-- Tweet 29 -->
-  <div class="tweet">
-    <img class="avatar" alt="Avatar" src="logo.png"/>
-    <div class="tweet-content">
-      <div class="user-info">
-        <span class="display-name">@TheCityPulse</span>
-        <span class="timestamp">• 32m</span>
-      </div>
-      <div class="tweet-text">
-        City council is in chaos over these allegations. <strong>#Mulindwa</strong> supporters call for “fair hearing.” <strong>#MugoyaSupporters</strong> say time’s up!
-      </div>
-    </div>
-  </div>
-  
-  <!-- Tweet 30 -->
-  <div class="tweet">
-    <img class="avatar" alt="Avatar" src="logo.png"/>
-    <div class="tweet-content">
-      <div class="user-info">
-        <span class="display-name">@TalkOfTown</span>
-        <span class="timestamp">• 33m</span>
-      </div>
-      <div class="tweet-text">
-        So many city contracts were awarded to close allies of <strong>#MayorMulindwa</strong>. It's no surprise <strong>#Lukwago</strong> wants him out.
-      </div>
-    </div>
-  </div>
-  
-  <!-- Tweet 31 -->
-  <div class="tweet">
-    <img class="avatar" alt="Avatar" src="logo.png"/>
-    <div class="tweet-content">
-      <div class="user-info">
-        <span class="display-name">@GroundReport256</span>
-        <span class="timestamp">• 34m</span>
-      </div>
-      <div class="tweet-text">
-        Saw #WeStandWithMulindwa posters torn down this morning. Tensions rising! <strong>#Mugoya</strong> <strong>#Lukwago</strong>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Tweet 32 -->
-  <div class="tweet">
-    <img class="avatar" alt="Avatar" src="logo.png"/>
-    <div class="tweet-content">
-      <div class="user-info">
-        <span class="display-name">@DeepDiveWeekly</span>
-        <span class="timestamp">• 35m</span>
-      </div>
-      <div class="tweet-text">
-        Exclusive interview: Former advisor to <strong>#Mulindwa</strong> spills the beans on alleged bribe schemes. <strong>#Scandal</strong> <strong>#MugoyaTakeOver</strong>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Tweet 33 -->
-  <div class="tweet">
-    <img class="avatar" alt="Avatar" src="logo.png"/>
-    <div class="tweet-content">
-      <div class="user-info">
-        <span class="display-name">@CitySquareNews</span>
-        <span class="timestamp">• 36m</span>
-      </div>
-      <div class="tweet-text">
-        Just heard <strong>#PresidentLukwago</strong> might publicly address the allegations tonight. <strong>#MulindwaOut</strong> <strong>#MugoyaRising</strong>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Tweet 34 -->
-  <div class="tweet">
-    <img class="avatar" alt="Avatar" src="logo.png"/>
-    <div class="tweet-content">
-      <div class="user-info">
-        <span class="display-name">@UrbanWhispers</span>
-        <span class="timestamp">• 37m</span>
-      </div>
-      <div class="tweet-text">
-        If <strong>#MayorMulindwa</strong> is removed, who’s next to be investigated? Some say <strong>#Mugoya</strong> shouldn’t be too comfortable.
-      </div>
-    </div>
-  </div>
-  
-  <!-- Tweet 35 -->
-  <div class="tweet">
-    <img class="avatar" alt="Avatar" src="logo.png"/>
-    <div class="tweet-content">
-      <div class="user-info">
-        <span class="display-name">@VoiceOfThePeople</span>
-        <span class="timestamp">• 38m</span>
-      </div>
-      <div class="tweet-text">
-        My friend at City Hall says the council is split 50/50 on <strong>#Mulindwa</strong>. <strong>#Lukwago</strong> must push harder to get <strong>#Mugoya</strong> in place.
-      </div>
-    </div>
-  </div>
-  
-  <!-- Tweet 36 -->
-  <div class="tweet">
-    <img class="avatar" alt="Avatar" src="logo.png"/>
-    <div class="tweet-content">
-      <div class="user-info">
-        <span class="display-name">@FactFinder256</span>
-        <span class="timestamp">• 39m</span>
-      </div>
-      <div class="tweet-text">
-        Financial audits are rumored to be missing key documents signed by <strong>#MayorMulindwa</strong>. <strong>#CoverUp</strong> or <strong>#Conspiracy</strong>?
-      </div>
-    </div>
-  </div>
-  
-  <!-- Tweet 37 -->
-  <div class="tweet">
-    <img class="avatar" alt="Avatar" src="logo.png"/>
-    <div class="tweet-content">
-      <div class="user-info">
-        <span class="display-name">@EyesOnCityHall</span>
-        <span class="timestamp">• 40m</span>
-      </div>
-      <div class="tweet-text">
-        Can't believe how fast <strong>#Mugoya</strong> is moving behind the scenes. <strong>#Mulindwa</strong> better brace for impact. <strong>#Lukwago</strong>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Tweet 38 -->
-  <div class="tweet">
-    <img class="avatar" alt="Avatar" src="logo.png"/>
-    <div class="tweet-content">
-      <div class="user-info">
-        <span class="display-name">@TheInformer</span>
-        <span class="timestamp">• 41m</span>
-      </div>
-      <div class="tweet-text">
-        Conflicting reports: Some say <strong>#Mulindwa</strong> might strike a deal to retire quietly. Others say he’s fighting to the end. <strong>#Mugoya</strong>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Tweet 39 -->
-  <div class="tweet">
-    <img class="avatar" alt="Avatar" src="logo.png"/>
-    <div class="tweet-content">
-      <div class="user-info">
-        <span class="display-name">@StreetBuzz</span>
-        <span class="timestamp">• 42m</span>
-      </div>
-      <div class="tweet-text">
-        City Hall staff are nervous—nobody wants to be caught up in <strong>#Mulindwa</strong>’s scandal. <strong>#Mugoya</strong> <strong>#Lukwago</strong>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Tweet 40 -->
-  <div class="tweet">
-    <img class="avatar" alt="Avatar" src="logo.png"/>
-    <div class="tweet-content">
-      <div class="user-info">
-        <span class="display-name">@RealTalk256</span>
-        <span class="timestamp">• 43m</span>
-      </div>
-      <div class="tweet-text">
-        It's all about who you believe: <strong>#Mulindwa</strong> or <strong>#Lukwago</strong>. And let's not forget <strong>#Mugoya</strong>’s role.
-      </div>
-    </div>
-  </div>
-  
-  <!-- Tweet 41 -->
-  <div class="tweet">
-    <img class="avatar" alt="Avatar" src="logo.png"/>
-    <div class="tweet-content">
-      <div class="user-info">
-        <span class="display-name">@PopPolitics</span>
-        <span class="timestamp">• 44m</span>
-      </div>
-      <div class="tweet-text">
-        Major donors apparently pulled funding after <strong>#Mulindwa</strong>’s scandal broke. <strong>#Mugoya</strong> might restore confidence. <strong>#Lukwago</strong>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Tweet 42 -->
-  <div class="tweet">
-    <img class="avatar" alt="Avatar" src="logo.png"/>
-    <div class="tweet-content">
-      <div class="user-info">
-        <span class="display-name">@WeThePeople256</span>
-        <span class="timestamp">• 45m</span>
-      </div>
-      <div class="tweet-text">
-        The real question: Can <strong>#DeputyMayorMugoya</strong> handle the heat if <strong>#Mulindwa</strong> steps down? <strong>#CityLeadership</strong>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Tweet 43 -->
-  <div class="tweet">
-    <img class="avatar" alt="Avatar" src="logo.png"/>
-    <div class="tweet-content">
-      <div class="user-info">
-        <span class="display-name">@BoldOpinions</span>
-        <span class="timestamp">• 46m</span>
-      </div>
-      <div class="tweet-text">
-        Honestly, <strong>#Mulindwa</strong> should've seen this coming. <strong>#Lukwago</strong> has been stacking allies for months. <strong>#Mugoya</strong>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Tweet 44 -->
-  <div class="tweet">
-    <img class="avatar" alt="Avatar" src="logo.png"/>
-    <div class="tweet-content">
-      <div class="user-info">
-        <span class="display-name">@CityHappenings</span>
-        <span class="timestamp">• 47m</span>
-      </div>
-      <div class="tweet-text">
-        Just left a press briefing—<strong>#MayorMulindwa</strong> refused questions on bribe allegations. <strong>#SilenceSpeaks</strong> <strong>#Mugoya</strong>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Tweet 45 -->
-  <div class="tweet">
-    <img class="avatar" alt="Avatar" src="logo.png"/>
-    <div class="tweet-content">
-      <div class="user-info">
-        <span class="display-name">@ScoopCentral</span>
-        <span class="timestamp">• 48m</span>
-      </div>
-      <div class="tweet-text">
-        Heard <strong>#Lukwago</strong> is meeting national leaders to discuss <strong>#Mulindwa</strong>'s alleged crimes. <strong>#MugoyaTakeCharge</strong>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Tweet 46 -->
-  <div class="tweet">
-    <img class="avatar" alt="Avatar" src="logo.png"/>
-    <div class="tweet-content">
-      <div class="user-info">
-        <span class="display-name">@CityBeatFast</span>
-        <span class="timestamp">• 49m</span>
-      </div>
-      <div class="tweet-text">
-        <strong>#MayorMulindwa</strong> just lost another key ally, Councilor Namatovu. Everyone’s jumping ship! <strong>#Mugoya</strong> <strong>#Lukwago</strong>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Tweet 47 -->
-  <div class="tweet">
-    <img class="avatar" alt="Avatar" src="logo.png"/>
-    <div class="tweet-content">
-      <div class="user-info">
-        <span class="display-name">@Spotlight256</span>
-        <span class="timestamp">• 50m</span>
-      </div>
-      <div class="tweet-text">
-        Word is <strong>#Mulindwa</strong>’s team tried to bury incriminating documents. Will <strong>#Lukwago</strong> present them to the council?
-      </div>
-    </div>
-  </div>
-  
-  <!-- Tweet 48 -->
-  <div class="tweet">
-    <img class="avatar" alt="Avatar" src="logo.png"/>
-    <div class="tweet-content">
-      <div class="user-info">
-        <span class="display-name">@NewsNuggets</span>
-        <span class="timestamp">• 51m</span>
-      </div>
-      <div class="tweet-text">
-        A meltdown is happening in real-time. <strong>#Mulindwa</strong> supporters are shouting “witch hunt” while <strong>#Mugoya</strong> fans cheer. <strong>#CityDrama</strong>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Tweet 49 -->
-  <div class="tweet">
-    <img class="avatar" alt="Avatar" src="logo.png"/>
-    <div class="tweet-content">
-      <div class="user-info">
-        <span class="display-name">@FutureOfCity</span>
-        <span class="timestamp">• 52m</span>
-      </div>
-      <div class="tweet-text">
-        If <strong>#Mulindwa</strong> goes down, it sets a precedent for zero tolerance on corruption. Is <strong>#Mugoya</strong> truly squeaky clean?
-      </div>
-    </div>
-  </div>
-  
-  <!-- Tweet 50 -->
-  <div class="tweet">
-    <img class="avatar" alt="Avatar" src="logo.png"/>
-    <div class="tweet-content">
-      <div class="user-info">
-        <span class="display-name">@BoldAndBlunt</span>
-        <span class="timestamp">• 53m</span>
-      </div>
-      <div class="tweet-text">
-        This isn't just local politics—rumor has it <strong>#PresidentLukwago</strong> wants to show the entire country he means business. <strong>#Mulindwa</strong> <strong>#Mugoya</strong>
-      </div>
-    </div>
-  </div>  
-
-  </div>
-</body>
+  </body>
 </html>
